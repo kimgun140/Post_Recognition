@@ -1,0 +1,15 @@
+﻿<Window x:Class="cvtest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:cvtest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Button" HorizontalAlignment="Left" Height="86" Margin="600,270,0,0" VerticalAlignment="Top" Width="127" Click="Button_Click"/>
+        <!--<Frame x:Name="testframe" Content="Frame" Margin="58,154,400,78" Binding./>-->
+        <Button Content="Button" Margin="600,154,73,193" Click="Button_Click_1"/>
+
+    </Grid>
+</Window>
