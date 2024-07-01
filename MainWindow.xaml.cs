@@ -76,8 +76,8 @@ namespace cvtest
             //Cv2.Rect rect;
             OpenCvSharp.Rect rect = new OpenCvSharp.Rect();
             //rect = [rect.Y,y+h,rect.X:];
-            //Mat dst = frame.SubMat(new OpenCvSharp.Rect(100, 100, 100, 100));
-            
+            Mat dst = frame.SubMat(new OpenCvSharp.Rect(100, 100, 100, 100));
+
             Cv2.Rectangle(frame, rect, Scalar.White);
 
             //if rect.X ;
