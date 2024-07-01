@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +17,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using OpenCvSharp;
 using OpenCvSharp.WpfExtensions;
+using Tesseract;
 
 namespace cvtest
 {
@@ -41,15 +43,31 @@ namespace cvtest
         // 사진 저장버튼 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //Cv.SaveImage("../../capture.jpg", src);
-            string save = DateTime.Now.ToString("yyyy-MM-dd-hh시mm분ss초");
-            //Cv2.ImWrite("./" + save + ".png", frame);
+            using (var engine = new TesseractEngine(@"C:\Program Files\Tesseract-OCR/tessdata", "kor", EngineMode.Default)) 
+            {
+                string imagePath = "C:\\Users\\iot\\source\\repos\\kimgun140\\cvtest\\image2\\2024-07-01-11시48분09초.png";
+
+                var img = Pix.LoadFromFile(imagePath);
+                    {
+                    using (var page = engine.Process(img))
+                    {
+                        // 인식된 텍스트 출력
+                        string text = page.GetText();
+                        asdf.Text = text;
+                    }
+                }
+
+            }
+
+
+
+
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            VideoCapture cam = new VideoCapture(0);
+            VideoCapture cam = new VideoCapture(1);
             Mat frame = new Mat();
             int x = 350;
             int y= 125 ;
@@ -58,10 +76,9 @@ namespace cvtest
             //Cv2.Rect rect;
             OpenCvSharp.Rect rect = new OpenCvSharp.Rect();
             //rect = [rect.Y,y+h,rect.X:];
-            Mat dst = frame.SubMat(new OpenCvSharp.Rect(100, 100, 100, 100));
-
+            //Mat dst = frame.SubMat(new OpenCvSharp.Rect(100, 100, 100, 100));
+            
             Cv2.Rectangle(frame, rect, Scalar.White);
-            rect = Cv2.SelectROI("frame", frame, false);
 
             //if rect.X ;
 
@@ -69,10 +86,12 @@ namespace cvtest
             {
                 cam.Read(frame);
                 Cv2.ImShow("frame", frame);
+                //rect = Cv2.SelectROI("frame", frame, false);
+
 
             }
             string save = DateTime.Now.ToString("yyyy-MM-dd-hh시mm분ss초");
-            Cv2.ImWrite("C:\\Users\\LMS\\source\\repos\\cvtest\\image/" + save + ".png", frame);
+            Cv2.ImWrite("C:\\Users\\iot\\source\\repos\\kimgun140\\cvtest\\image2/" + save + ".png", frame);
             //Tesseract.
             //frame[y: rect.Y + rect.Height, x: rect.X + rect.Width];
             frame.Dispose();

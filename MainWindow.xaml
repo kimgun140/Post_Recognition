@@ -10,6 +10,7 @@
         <Button Content="Button" HorizontalAlignment="Left" Height="86" Margin="600,270,0,0" VerticalAlignment="Top" Width="127" Click="Button_Click"/>
         <!--<Frame x:Name="testframe" Content="Frame" Margin="58,154,400,78" Binding./>-->
         <Button Content="Button" Margin="600,154,73,193" Click="Button_Click_1"/>
+        <TextBox x:Name="asdf" TextWrapping="Wrap" Text="" Width="120" Margin="86,57,594,248"/>
 
     </Grid>
 </Window>
