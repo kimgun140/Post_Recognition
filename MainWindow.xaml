@@ -10,7 +10,11 @@
         <Button Content="Button" HorizontalAlignment="Left" Height="86" Margin="600,270,0,0" VerticalAlignment="Top" Width="127" Click="Button_Click"/>
         <!--<Frame x:Name="testframe" Content="Frame" Margin="58,154,400,78" Binding./>-->
         <Button Content="Button" Margin="600,154,73,193" Click="Button_Click_1"/>
-        <TextBox x:Name="asdf" TextWrapping="Wrap" Text="" Width="120" Margin="86,57,594,248"/>
+        <TextBox x:Name="asdf" TextWrapping="Wrap" Text="0" Margin="86,57,553,251"/>
+        <TextBox x:Name="asdf1" TextWrapping="Wrap" Text="1" Margin="301,56,338,251"/>
+        <TextBox x:Name="asdf2" TextWrapping="Wrap" Text="2" Margin="521,57,118,251"/>
+        <TextBox x:Name="asdf3" TextWrapping="Wrap" Text="3" Margin="86,230,553,78"/>
+        <TextBox x:Name="asdf4" TextWrapping="Wrap" Text="4" Margin="300,230,338,78"/>
 
     </Grid>
 </Window>
