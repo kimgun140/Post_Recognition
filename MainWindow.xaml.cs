@@ -57,7 +57,9 @@ namespace cvtest
 
             {
                 //string imagePath = "C:\\Users\\LMS\\source\\repos\\cvtest\\image2\\recipt.jpg";
-                string imagePath = "C:\\Users\\LMS\\source\\repos\\cvtest\\image2\\IE001338485_STD.jpg";
+                //string imagePath = @".\image2\IE001338485_STD.jpg";
+                string imagePath = @"C:\Users\iot\Source\Repos\kimgun140\cvtest\image2\IE001338485_STD.jpg";
+
                 //string imagePath = "C:\\Users\\LMS\\source\\repos\\cvtest\\image2\\mail.jpg"; // 
                 //string imagePath = "C:\\Users\\LMS\\source\\repos\\cvtest\\image2\\20240628_130449.jpg"; // 영수증 이건 전처리 안해준게 더 낫네? 
                 //string imagePath = "C:\\Users\\LMS\\source\\repos\\cvtest\\image2\\20240702_190556.jpg"; // 메가
@@ -71,7 +73,13 @@ namespace cvtest
                 //Cv2.ImRead("images/recipt.jpg");
                 //// 확대 
                 Mat resizedImg = new Mat();
-                Cv2.Resize(asd, resizedImg, new OpenCvSharp.Size(), 3, 3, InterpolationFlags.Linear);
+                
+                if(asd.Empty())
+                {
+                    MessageBox.Show("이미지없음");
+                }
+
+                Cv2.Resize(asd, resizedImg,new OpenCvSharp.Size(), 3, 3, InterpolationFlags.Linear);
 
                 //// 이미지를 그레이스케일로 변환합니다.
                 Mat grayImg = new Mat();
@@ -120,18 +128,7 @@ namespace cvtest
                         }
                     }
                 }
-
-
-
-
-
-
             }
-
-
-
-
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
