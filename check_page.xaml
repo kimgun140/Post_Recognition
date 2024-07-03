@@ -1,0 +1,30 @@
+﻿<Page x:Class="cvtest.check_page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:cvtest"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="check_page">
+
+    <Grid Background="White">
+        <ListView x:Name="datauser" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="48,59,24,199">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="보낸 사람"/>
+                    <GridViewColumn Header="연락처"/>
+                    <GridViewColumn Header="주소1"/>
+                    <GridViewColumn Header="주소2"/>
+                    <GridViewColumn Header="받는사람"/>
+                    <GridViewColumn Header="연락처"/>
+                    <GridViewColumn Header="주소1"/>
+                    <GridViewColumn Header="주소2"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="check" Content="Button" Margin="610,306,44,44" Click="check_Click"/>
+        <TextBox x:Name="testbox" TextWrapping="Wrap" Text="TextBox" Margin="38,266,195,68" />
+
+    </Grid>
+</Page>
