@@ -77,7 +77,7 @@ namespace cvtest
                 //이방법대로 하면 
 
                 data = null;
-                data = new byte[256];
+                data = new byte[BUFFSIZE];
                 int size = stream.Read(data, 0, data.Length); //받는 데이터의 바이트배열, 인덱스, 길이
                 if (data[0] == (byte)REC_FIN)
                 {
