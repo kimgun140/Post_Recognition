@@ -60,7 +60,7 @@ namespace cvtest
         bool is_initCam, is_initTimer;
         string save_name = DateTime.Now.ToString("yyyy-MM-dd-hh시mm분ss초");
 
-        // 보낸 사람
+        // 보낸 사람, 받는 사람 여기에 한번에 받아서 쓸거임 
         List<string> list = new List<string>();
         string[] testdata_recv; // 받음 
         string[] test = new string[4];
@@ -149,7 +149,7 @@ namespace cvtest
                 {
                     using (var page = engine.Process(img))
                     {
-                        cnt += 1;
+                        cnt += 1; // 이걸로 첫번째 하면 보내는 사람 두번 째는 받는 사람으로할거임
                         //첫번째는 보내는 사람 두 번째는 받는 사람 
                         // 인식된 텍스트 출력
                         string text = page.GetText();// 추출한 텍스트
@@ -163,8 +163,7 @@ namespace cvtest
                             if (line != "")// 보내는 사람 
                             {
                                 asdf1.Text += line + "\n";
-                                int i = 0;
-                                i++;
+
                                 list.Add(line);
                                 //test.Append(text);
 
@@ -183,31 +182,11 @@ namespace cvtest
                         for (int i = 0; i < list.Count; i++)
                         {
                             asdf3.Text += list[i];
-                            MessageBox.Show(list[i]);
+                            //MessageBox.Show(list[i]);
                         }
-                        send_MAILINFO(list);
+                        send_MAILINFO(list);// 전부다 때려박기 목요일 아침에 해봐야징 
 
-                        ////byte[] data;
-                        ////string send_msg;
-                        ////string responses;
-                        ////// 특정 학생 아이디 보내기 
-                        ////data = null;
-                        ////data = new byte[256];
-                        //for (int i = 0; i < list.Count; i++)
-                        //{
-                        //    //byte[] data;
-                        //    //string send_msg = null;
-                        //    //string responses;
-                        //    //// 특정 학생 아이디 보내기 
-                        //    //data = null;
-                        //    //data = new byte[256];
 
-                        //    //send_msg = list[i]; //  유저어아디 보내기  
-                        //    //data = Encoding.UTF8.GetBytes(send_msg);
-                        //    //stream.Write(data, 0, data.Length);//전송할 데이터의 바이트 배열, 전송을 시작할 배열의 인덱스, 전송할 데이터의 길이.
-
-                        //    //Thread.Sleep(100);
-                        //}
 
                     }
                 }
@@ -246,9 +225,9 @@ namespace cvtest
         {
             //list 
 
-            try
+            try// 이거 되나? 해봐야지 
             {
-                string msg = MAILINFO + datalist[0] + SEP + datalist[1] + SEP + datalist[2] + SEP + datalist[3];
+                string msg = MAILINFO + datalist[0] + SEP + datalist[1] + SEP + datalist[2] + SEP + datalist[3] + SEP + datalist[4] + SEP + datalist[5] + SEP + datalist[6] + SEP + datalist[7];
                 asdf4.Text = 0 + datalist[0];
                 asdf4.Text += 1 + datalist[1];
                 asdf4.Text += 2 + datalist[2];

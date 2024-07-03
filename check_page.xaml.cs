@@ -115,7 +115,7 @@ namespace cvtest
                 }
             }
         }
-        public void send_REC_INF(string RNAME) // 받는사람
+        public void send_REC_INF(string RNAME) // 받는사람 데이터 달라고 요청하기 
         {
 
             try
