@@ -39,13 +39,11 @@ namespace cvtest
         const string SEP = "\n";
         const int BUFFSIZE = 1024;
 
-        static readonly HttpClient API = new HttpClient();
-        //byte[] data = new byte[256];
-        public static TcpClient clients = new TcpClient("10.10.21.105", 10001); //연결객체
-        ///*        public static TcpClient clients = new TcpClient("10.10.21.111", 8001); //연결객체*/
-        static NetworkStream stream = clients.GetStream();
-
-        int cnt = 0;
+        //static readonly HttpClient API = new HttpClient();
+        ////byte[] data = new byte[256];
+        //public static TcpClient clients = new TcpClient("10.10.21.105", 10001); //연결객체
+        /////*        public static TcpClient clients = new TcpClient("10.10.21.111", 8001); //연결객체*/
+        //static NetworkStream stream = clients.GetStream();
 
         // 필요한 변수 선언
         //VideoCapture cam = new VideoCapture(0);
@@ -77,27 +75,8 @@ namespace cvtest
             using (var engine = new TesseractEngine(@"C:\Program Files\Tesseract-OCR/tessdata", "eng", EngineMode.Default))
 
             {
-                //string imagePath = "C:\\Users\\LMS\\source\\repos\\cvtest\\image2\\recipt.jpg";
-                //string imagePath = @".\image2\IE001338485_STD.jpg";
-                //string imagePath = @"C:\Users\LMS\source\repos\cvtest\image2\IE001338485_STD.jpg";
-                string imagePath = @"C:\Users\LMS\source\repos\cvtest\image2\IMG_4430.png";
-
-
-                //string imagePath = "C:\\Users\\LMS\\source\\repos\\cvtest\\image2\\mail.jpg"; // 
-                //string imagePath = "C:\\Users\\LMS\\source\\repos\\cvtest\\image2\\20240628_130449.jpg"; // 영수증 이건 전처리 안해준게 더 낫네? 
-                //string imagePath = "C:\\Users\\LMS\\source\\repos\\cvtest\\image2\\20240702_190556.jpg"; // 메가
-
-                string RNAME; // 보내는 사람 
-                string RADDRESS; // 보내는 주소
-                string RPNUM; // 보내는 우편번호
-                string SNAME; // 
-                string PNUM;
-
-
-
-
-
-
+                //string imagePath = @"C:\Users\LMS\source\repos\cvtest\image2\IMG_4430.png";
+                string imagePath = @"C:\Users\LMS\source\repos\cvtest\image2\2024-07-04-09시08분13초.png";
                 //string imagePath = address + save_pic + ".png"; // 촬영한 이미지 
 
                 Mat asd = Cv2.ImRead(imagePath);
@@ -114,82 +93,112 @@ namespace cvtest
                 Cv2.Resize(asd, resizedImg, new OpenCvSharp.Size(), 1, 1, InterpolationFlags.Linear);
 
                 //// 이미지를 그레이스케일로 변환합니다.
-                Mat grayImg = new Mat();
-                Cv2.CvtColor(resizedImg, grayImg, ColorConversionCodes.BGR2GRAY);
+                //Mat grayImg = new Mat();
+                //Cv2.CvtColor(resizedImg, grayImg, ColorConversionCodes.BGR2GRAY);
 
-                //이진화를 적용합니다.
-                Mat binaryImg = new Mat();
-                //Cv2.Threshold(grayImg, binaryImg, 0, 255, ThresholdTypes.Binary | ThresholdTypes.Otsu);
-                Cv2.Threshold(grayImg, binaryImg, 0, 120, ThresholdTypes.Otsu);
-                Cv2.ImShow("binay", binaryImg);
+                ////이진화를 적용합니다.
+                //Mat binaryImg = new Mat();
+                ////Cv2.Threshold(grayImg, binaryImg, 0, 255, ThresholdTypes.Binary | ThresholdTypes.Otsu);
+                //Cv2.Threshold(grayImg, binaryImg, 0, 120, ThresholdTypes.Otsu);
+                //Cv2.ImShow("binay", binaryImg);
 
-                // 노이즈 제거를 위해 GaussianBlur를 적용합니다.
-                Mat denoisedImg = new Mat();
-                Cv2.GaussianBlur(binaryImg, denoisedImg, new OpenCvSharp.Size(3, 3), 0); // 노란 바탕의 글은 노이즈 제거하면 되네 
+                //// 노이즈 제거를 위해 GaussianBlur를 적용합니다.
+                //Mat denoisedImg = new Mat();
+                //Cv2.GaussianBlur(binaryImg, denoisedImg, new OpenCvSharp.Size(3, 3), 0); // 노란 바탕의 글은 노이즈 제거하면 되네 
 
-                // 이미지를 선명하게 합니다.
-                Mat sharpenedImg = new Mat();
-                Cv2.AddWeighted(denoisedImg, 1.5, grayImg, -0.5, 0, sharpenedImg);
-                //Cv2.AddWeighted(denoisedImg, 1.5, sharpenedImg, -0.5, 0, sharpenedImg);
+                //// 이미지를 선명하게 합니다.
+                //Mat sharpenedImg = new Mat();
+                //Cv2.AddWeighted(denoisedImg, 1.5, grayImg, -0.5, 0, sharpenedImg);
+                ////Cv2.AddWeighted(denoisedImg, 1.5, sharpenedImg, -0.5, 0, sharpenedImg);
 
+                //OpenCvSharp.Rect roiRect = Cv2.SelectROI("img", resizedImg, false);
 
-                // 팀,경제 이 부분이 두줄로 나오네 
+                //roiRect.X = 20;
+                //roiRect.Y = 100;
+                //roiRect.Width = 800 - roiRect.X;
+                //roiRect.Height = 300 - roiRect.Y;
+                //resizedImg.
+                //if (roiRect.Width > 0 && roiRect.Height > 0)
+                //{
+                //    Mat roi = new Mat(resizedImg, roiRect);
+                //    Cv2.ImShow("cropped", roi);
+                //    Cv2.ImWrite("cropped.jpg", roi);
+                //}
+                int imgW = resizedImg.Cols;
+                int imgH = resizedImg.Rows;
+                int roiX = 20;
+                int roiY = 100;
+                int roiW = 800;
+                int roiH = 300;
+                if (roiX < 0) roiX = 0;
+                if (roiY < 0) roiY = 0;
+                if (roiX + roiW > imgW) roiW = imgW - roiX;
+                if (roiY + roiH > imgH) roiH = imgH - roiY;
+                int roirecvX = 640;
+                int roirecvY = 480;
+                int roirecvW = 1160 - 640;
+                int roirecvH = 700 - 480;
+                if (roirecvX < 0) roiX = 0;
+                if (roirecvY < 0) roiY = 0;
+                if (roirecvX + roirecvW > imgW) roirecvW = imgW - roirecvX;
+                if (roirecvY + roirecvH > imgH) roirecvH = imgH - roirecvY;
+                OpenCvSharp.Rect roiRect = new OpenCvSharp.Rect(roiX, roiY, roiW, roiH); //x,y,w,h
+                OpenCvSharp.Rect roiRectrecv = new OpenCvSharp.Rect(roirecvX, roirecvY, roirecvW, roirecvH); //x,y,w,h
+                Mat matrecv = new Mat(resizedImg, roiRectrecv);
+                Mat mat = new Mat(resizedImg, roiRect);
+                Cv2.ImShow("asdf", mat);// 정보 1
+                Cv2.ImShow("asdfrecv", matrecv); // 정보 2 
+                Cv2.ImWrite("cropped.jpg", mat);//정보1 
+                Cv2.Rectangle(resizedImg, roiRect, OpenCvSharp.Scalar.Gray);// 그리기
+                Cv2.ImShow("aaa", resizedImg); // 보이기 
+                Cv2.ImWrite("croppedrecv.jpg", matrecv);// 정보 2
 
-                OpenCvSharp.Rect roiRect = Cv2.SelectROI("img", resizedImg, false);
-                if (roiRect.Width > 0 && roiRect.Height > 0)
-                {
-                    Mat roi = new Mat(resizedImg, roiRect);
-                    Cv2.ImShow("cropped", roi);
-                    Cv2.ImWrite("cropped.jpg", roi);
-                }
-
-
-                // 텍스트 추출 
+                // 텍스트 추출  보내는 사람 
                 var img = Pix.LoadFromFile("cropped.jpg");
                 {
                     using (var page = engine.Process(img))
                     {
-                        cnt += 1; // 이걸로 첫번째 하면 보내는 사람 두번 째는 받는 사람으로할거임
-                        //첫번째는 보내는 사람 두 번째는 받는 사람 
-                        // 인식된 텍스트 출력
                         string text = page.GetText();// 추출한 텍스트
                         asdf.Text = text;
-                        //asdf1.Text = text.Split('\n')[0]; // 배열의 첫번째 
                         string[] lines = text.Split('\n');// lines에 개행문자 기준으로 잘라서 각각 넣음 
-
-
                         foreach (var line in lines)
                         {
                             if (line != "")// 보내는 사람 
                             {
                                 asdf1.Text += line + "\n";
-
                                 list.Add(line);
-                                //test.Append(text);
-
-                                //asdf3.Text = testdata_send[i];
                             }
-                            //else // 받는 사람 
-                            //{
                             asdf2.Text += line + "\n";
-                            //}
-
-
-
-
                         }
-
                         for (int i = 0; i < list.Count; i++)
                         {
                             asdf3.Text += list[i];
-                            //MessageBox.Show(list[i]);
                         }
-                        send_MAILINFO(list);// 전부다 때려박기 목요일 아침에 해봐야징 
-
-
 
                     }
                 }
+
+
+                var imgrecv = Pix.LoadFromFile("croppedrecv.jpg"); // 아래 있는 받는 사람 
+                {
+                    using (var page = engine.Process(imgrecv))
+                    {
+                        string text = page.GetText();// 추출한 텍스트
+                        asdf.Text = text;
+                        string[] lines = text.Split('\n');// lines에 개행문자 기준으로 잘라서 각각 넣음 
+                        foreach (var line in lines)
+                        {
+                            if (line != "")// 보내는 사람 
+                            {
+                                asdf2.Text += line + "\n";
+                                list.Add(line);
+                            }
+                            asdf4.Text += line + "\n";
+                        }
+                    }
+                }
+
+
             }
         }
 
@@ -199,28 +208,75 @@ namespace cvtest
             Mat frame = new Mat();
 
 
-            OpenCvSharp.Rect rect = new OpenCvSharp.Rect();
+            OpenCvSharp.Rect rect = new OpenCvSharp.Rect(20, 100, 500, 300); // 
+                                                                             //OpenCvSharp.Rect rect_recv = new OpenCvSharp.Rect(20, 100, 500, 300);
+                                                                             //
 
-
-            Cv2.Rectangle(frame, rect, Scalar.White);
 
 
             while (Cv2.WaitKey(33) != 'q')
             {
                 cam.Read(frame);
-                Cv2.ImShow("frame", frame);
+
+                //Cv2.Rectangle(frame, rect, Scalar.Black, 1); // 프레임에 사각형 그리기 
+
+                Mat gray = new Mat();
+                Cv2.CvtColor(frame, gray, ColorConversionCodes.BGR2GRAY);
 
 
+                Cv2.GaussianBlur(gray, gray, new OpenCvSharp.Size(5, 5), 0);
 
+                Mat edges = new Mat();
+                Cv2.Canny(gray, edges, 250, 250);
+
+
+                OpenCvSharp.Point[][] contours;
+                HierarchyIndex[] hierarchy;
+                Cv2.FindContours(edges, out contours, out hierarchy, RetrievalModes.List, ContourApproximationModes.ApproxSimple);
+
+                foreach (var contour in contours)
+                {
+                    var approx = Cv2.ApproxPolyDP(contour, Cv2.ArcLength(contour, true) * 0.02, true);
+                    if (approx.Length == 4 && Cv2.IsContourConvex(approx))
+                    {
+                        //Cv2.Polylines(frame, new[] { approx }, true, Scalar.Red, 2, LineTypes.AntiAlias);
+                        OpenCvSharp.Rect roundrec = Cv2.BoundingRect(approx);
+                        
+                        if (roundrec.Width > 400 && roundrec.Width < 700 && roundrec.Height > 250 && roundrec.Height < 500)
+                        {
+                            //Cv2.PutText(frame, roundrec.Width,1,Cv2.);
+                            Mat mat123 = new Mat(frame, roundrec); // q누르면 종료 되면서 마지막 프레임이 저장 
+                            Cv2.ImWrite(address + save + ".png", mat123);
+
+                            frame.Dispose();
+                            cam.Release();
+                            Cv2.DestroyAllWindows();
+                            break;
+                        }
+
+                    }
+                }
+
+                //Cv2.ImShow("frame", frame);
             }
+            //Mat mat = new Mat(frame, rect); // q누르면 종료 되면서 마지막 프레임이 저장 
+
             // 파일이름 현재 시간
-
-            Cv2.ImWrite(address + save + ".png", frame);
-
-            frame.Dispose();
-            cam.Release();
-            Cv2.DestroyAllWindows();
+            //Cv2.ImWrite(address + save + ".png", mat);
+            //Cv2.ImWrite(address + save + ".png", frame);
+            //Cv2.ImShow("ttt", mat);
+            //Cv2.WaitKey(0);
+            //frame.Dispose();
+            //cam.Release();
+            //Cv2.DestroyAllWindows();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            send_MAILINFO(list);// 전부다 때려박기 목요일 아침에 해봐야징 
+
+        }
+
         public void send_MAILINFO(List<string> datalist)// 
         {
             //list 
@@ -234,7 +290,7 @@ namespace cvtest
                 asdf4.Text += 3 + datalist[3];
 
                 byte[] data = Encoding.UTF8.GetBytes(msg);
-                stream.Write(data, 0, data.Length);//전송할 데이터의 바이트 배열, 전송을 시작할 배열의 인덱스, 전송할 데이터의 길이.
+                //stream.Write(data, 0, data.Length);//전송할 데이터의 바이트 배열, 전송을 시작할 배열의 인덱스, 전송할 데이터의 길이.
 
                 //Socket.Send(data);
             }

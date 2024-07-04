@@ -9,22 +9,19 @@
       Title="check_page">
 
     <Grid Background="White">
-        <ListView x:Name="datauser" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="48,59,24,199">
+        <ListView x:Name="datauser" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="48,59,24,199" Width="720" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="보낸 사람"/>
-                    <GridViewColumn Header="연락처"/>
-                    <GridViewColumn Header="주소1"/>
-                    <GridViewColumn Header="주소2"/>
-                    <GridViewColumn Header="받는사람"/>
-                    <GridViewColumn Header="연락처"/>
-                    <GridViewColumn Header="주소1"/>
-                    <GridViewColumn Header="주소2"/>
+                    <GridViewColumn Header="보낸 사람" DisplayMemberBinding="{Binding send_name}" />
+                    <GridViewColumn Header="연락처" DisplayMemberBinding="{Binding send_phone}"/>
+                    <GridViewColumn Header="주소1" DisplayMemberBinding="{Binding send_address1}"/>
+                    <GridViewColumn Header="주소2" DisplayMemberBinding="{Binding send_address2}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="check" Content="Button" Margin="610,306,44,44" Click="check_Click"/>
-        <TextBox x:Name="testbox" TextWrapping="Wrap" Text="TextBox" Margin="38,266,195,68" />
+        <Button x:Name="check" Content="Button" Margin="610,306,44,44" Click="check_Click" Width="140" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="testbox" TextWrapping="Wrap" Text="TextBox" Margin="38,266,195,68" Width="560" Height="110" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBox x:Name="gg" TextWrapping="Wrap" Text="test" Margin="30,395,206,17" Width="560" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
