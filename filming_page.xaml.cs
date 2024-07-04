@@ -76,7 +76,7 @@ namespace cvtest
 
             {
                 //string imagePath = @"C:\Users\LMS\source\repos\cvtest\image2\IMG_4430.png";
-                string imagePath = @"C:\Users\LMS\source\repos\cvtest\image2\2024-07-04-09시08분13초.png";
+                string imagePath = @"C:\Users\iot\Source\Repos\kimgun140\cvtest\image2\2024-07-04-09시08분13초.png";
                 //string imagePath = address + save_pic + ".png"; // 촬영한 이미지 
 
                 Mat asd = Cv2.ImRead(imagePath);
@@ -126,26 +126,31 @@ namespace cvtest
                 //}
                 int imgW = resizedImg.Cols;
                 int imgH = resizedImg.Rows;
-                int roiX = 20;
-                int roiY = 100;
-                int roiW = 800;
-                int roiH = 300;
+                int roiX = 60;
+                int roiY = 50;
+                int roiW = 400;
+                int roiH = 100;
                 if (roiX < 0) roiX = 0;
                 if (roiY < 0) roiY = 0;
                 if (roiX + roiW > imgW) roiW = imgW - roiX;
                 if (roiY + roiH > imgH) roiH = imgH - roiY;
-                int roirecvX = 640;
-                int roirecvY = 480;
-                int roirecvW = 1160 - 640;
-                int roirecvH = 700 - 480;
+                int roirecvX = 300;
+                int roirecvY = 240;
+                int roirecvW = 270;
+                int roirecvH = 200;
                 if (roirecvX < 0) roiX = 0;
                 if (roirecvY < 0) roiY = 0;
                 if (roirecvX + roirecvW > imgW) roirecvW = imgW - roirecvX;
                 if (roirecvY + roirecvH > imgH) roirecvH = imgH - roirecvY;
+
+
                 OpenCvSharp.Rect roiRect = new OpenCvSharp.Rect(roiX, roiY, roiW, roiH); //x,y,w,h
                 OpenCvSharp.Rect roiRectrecv = new OpenCvSharp.Rect(roirecvX, roirecvY, roirecvW, roirecvH); //x,y,w,h
                 Mat matrecv = new Mat(resizedImg, roiRectrecv);
                 Mat mat = new Mat(resizedImg, roiRect);
+                // wpf에 띄우기~
+                hh.Source = OpenCvSharp.WpfExtensions.BitmapSourceConverter.ToBitmapSource(mat);
+
                 Cv2.ImShow("asdf", mat);// 정보 1
                 Cv2.ImShow("asdfrecv", matrecv); // 정보 2 
                 Cv2.ImWrite("cropped.jpg", mat);//정보1 
@@ -197,7 +202,7 @@ namespace cvtest
                         }
                     }
                 }
-
+                send_MAILINFO(list);
 
             }
         }
@@ -231,7 +236,7 @@ namespace cvtest
 
 
                 OpenCvSharp.Point[][] contours;
-                HierarchyIndex[] hierarchy;
+                HierarchyIndex[] hierarchy; // 계층적 인덱싱 인덱스타고 들어가면 다른 인덱스 그 인덱스 타고 들어가면 다른 인덱스 이런 식 
                 Cv2.FindContours(edges, out contours, out hierarchy, RetrievalModes.List, ContourApproximationModes.ApproxSimple);
 
                 foreach (var contour in contours)
@@ -241,7 +246,7 @@ namespace cvtest
                     {
                         //Cv2.Polylines(frame, new[] { approx }, true, Scalar.Red, 2, LineTypes.AntiAlias);
                         OpenCvSharp.Rect roundrec = Cv2.BoundingRect(approx);
-                        
+
                         if (roundrec.Width > 400 && roundrec.Width < 700 && roundrec.Height > 250 && roundrec.Height < 500)
                         {
                             //Cv2.PutText(frame, roundrec.Width,1,Cv2.);
@@ -288,6 +293,10 @@ namespace cvtest
                 asdf4.Text += 1 + datalist[1];
                 asdf4.Text += 2 + datalist[2];
                 asdf4.Text += 3 + datalist[3];
+                asdf4.Text += 4 + datalist[4];
+                asdf4.Text += 5 + datalist[5];
+                asdf4.Text += 6 + datalist[6];
+                asdf4.Text += 7 + datalist[7];
 
                 byte[] data = Encoding.UTF8.GetBytes(msg);
                 //stream.Write(data, 0, data.Length);//전송할 데이터의 바이트 배열, 전송을 시작할 배열의 인덱스, 전송할 데이터의 길이.

@@ -18,5 +18,6 @@
         <TextBox x:Name="asdf3" TextWrapping="Wrap" Text="3" Margin="86,230,553,78"/>
         <TextBox x:Name="asdf4" TextWrapping="Wrap" Text="4" Margin="300,230,338,78"/>
         <Button Content="전송" Margin="621,374,94,19" Click="Button_Click_2"/>
+        <Image x:Name="hh" Height="100" Width="100" Margin="235,352,465,-2" Source="{Binding }"/>
     </Grid>
 </Page>
