@@ -9,19 +9,36 @@
       Title="check_page">
 
     <Grid Background="White">
-        <ListView x:Name="datauser" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="48,59,24,199" Width="720" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <ListView x:Name="send_user_data" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,33,0,0" Width="345" Height="166" HorizontalAlignment="Left" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="보낸 사람" DisplayMemberBinding="{Binding send_name}" />
+                    <GridViewColumn Header="받은/보낸 사람" DisplayMemberBinding="{Binding send_name}" />
                     <GridViewColumn Header="연락처" DisplayMemberBinding="{Binding send_phone}"/>
                     <GridViewColumn Header="주소1" DisplayMemberBinding="{Binding send_address1}"/>
                     <GridViewColumn Header="주소2" DisplayMemberBinding="{Binding send_address2}"/>
+                    <!--<GridViewColumn Header="받는사람" DisplayMemberBinding="{Binding recv_name}"/>
+                    <GridViewColumn Header="연락처" DisplayMemberBinding="{Binding }"/>
+                    <GridViewColumn Header="주소1" DisplayMemberBinding="{Binding }"/>
+                    <GridViewColumn Header="주소2" DisplayMemberBinding="{Binding }"/>-->
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="check" Content="Button" Margin="610,306,44,44" Click="check_Click" Width="140" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="testbox" TextWrapping="Wrap" Text="TextBox" Margin="38,266,195,68" Width="560" Height="110" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <TextBox x:Name="gg" TextWrapping="Wrap" Text="test" Margin="30,395,206,17" Width="560" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="check" Content="받기정보" Margin="610,306,0,0" Click="check_Click" Width="102" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="testbox" TextWrapping="Wrap" Text="TextBox" Margin="0,204,0,0" Width="560" Height="110" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBox x:Name="gg" TextWrapping="Wrap" Text="test" Margin="10,321,0,0" Width="560" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="recvname" TextWrapping="Wrap" Text="받기정보" Width="120" Margin="592,225,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20"/>
+        <Button x:Name="check2" Content="보내기정보" Margin="612,385,0,0" Width="100" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Click="check2_Click"/>
+        <TextBox x:Name="sendanme" TextWrapping="Wrap" Text="보내기정보" Margin="592,268,0,0" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left" Height="20"/>
+        <!--<ListView  x:Name ="recv_user_data"  d:ItemsSource="{d:SampleData ItemCount=5}" Margin="375,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="166" Width="385">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="받는사람" DisplayMemberBinding="{Binding recv_name}"/>
+                    <GridViewColumn Header="연락처" DisplayMemberBinding="{Binding recv_phone}"/>
+                    <GridViewColumn Header="주소1" DisplayMemberBinding="{Binding recv_address1}"/>
+                    <GridViewColumn Header="주소2" DisplayMemberBinding="{Binding recv_address2}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>-->
 
     </Grid>
 </Page>
