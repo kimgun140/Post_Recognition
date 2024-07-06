@@ -7,9 +7,88 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="check_page">
+    <Page.Resources>
+        <!--<Style TargetType="ListViewItem">
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="#FFDDDDDD"
+                                BorderThickness="1"
+                                CornerRadius="5">
+                            <Grid>
+                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#FF3399FF"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFCCCCCC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+        <Style x:Name="ty2" x:Key="ButtonStyle1" TargetType="Button">
+            <Setter Property="Background" Value="#fF80C0E2" ></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="Content" Value="Login" ></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Template">
+                <Setter.Value >
+                    <ControlTemplate TargetType="Button" >
+                        <Border Background="{TemplateBinding Background}"   BorderThickness="2" BorderBrush="Black"  CornerRadius="3">
+                            <ContentPresenter  HorizontalAlignment="Center"  VerticalAlignment="Center" Content="보내기정보"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Name="ty1" x:Key="ButtonStyle2" TargetType="Button">
+            <Setter Property="Background" Value="#fF80C0E2" ></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="Content" Value="Login" ></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Template">
+                <Setter.Value >
+                    <ControlTemplate TargetType="Button" >
+                        <Border Background="{TemplateBinding Background}"   BorderThickness="2" BorderBrush="Black"  CornerRadius="3">
+                            <ContentPresenter  HorizontalAlignment="Center"  VerticalAlignment="Center" Content="받기정보"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Name="ttyy" x:Key="textStyle2" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate x:Name="ty2" TargetType="TextBox">
+                        <Border CornerRadius="2" BorderThickness="2" BorderBrush="Black" Background="#fff">
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Name="ttyy1" x:Key="textStyle1" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate x:Name="ty2" TargetType="TextBox">
+                        <Border CornerRadius="2" BorderThickness="2" BorderBrush="Black" Background="#fff">
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
+    </Page.Resources>
     <Grid Background="White">
-        <ListView x:Name="send_user_data" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,33,0,0" Width="345" Height="166" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <ListView x:Name="send_user_data" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,33,0,0" Width="702" Height="166" HorizontalAlignment="Left" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="받은/보낸 사람" DisplayMemberBinding="{Binding send_name}" />
@@ -23,12 +102,15 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="check" Content="받기정보" Margin="610,306,0,0" Click="check_Click" Width="102" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="testbox" TextWrapping="Wrap" Text="TextBox" Margin="0,204,0,0" Width="560" Height="110" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <TextBox x:Name="gg" TextWrapping="Wrap" Text="test" Margin="10,321,0,0" Width="560" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="recvname" TextWrapping="Wrap" Text="받기정보" Width="120" Margin="592,225,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20"/>
-        <Button x:Name="check2" Content="보내기정보" Margin="612,385,0,0" Width="100" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Click="check2_Click"/>
-        <TextBox x:Name="sendanme" TextWrapping="Wrap" Text="보내기정보" Margin="592,268,0,0" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left" Height="20"/>
+        <Button x:Name="check" Style="{StaticResource ButtonStyle2}" Content="받기정보" Margin="300,268,0,0" Click="check_Click" Width="100" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox   TextWrapping="Wrap" Style="{StaticResource textStyle2}" Text="받기정보" Width="120" Margin="118,301,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" />
+
+        <Button  x:Name="check2" Style="{StaticResource ButtonStyle1}" Content="보내기정보" Margin="633,268,0,0" Width="100" Height="70" VerticalAlignment="Top" HorizontalAlignment="Left" Click="check2_Click"/>
+
+        <TextBox Style="{StaticResource textStyle1}" TextWrapping="Wrap" Text="보내기정보" Margin="468,299,0,0" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left" Height="20"/>
+
+        <TextBox x:Name="recvname"  TextWrapping="Wrap" Text="받기정보" BorderThickness="0" Width="113" Margin="120,303,0,0" Height="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox  x:Name="sendanme" TextWrapping="Wrap" Text="보내기정보" BorderThickness="0" Width="113" Margin="472,301,0,0" Height="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <!--<ListView  x:Name ="recv_user_data"  d:ItemsSource="{d:SampleData ItemCount=5}" Margin="375,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="166" Width="385">
             <ListView.View>
                 <GridView>

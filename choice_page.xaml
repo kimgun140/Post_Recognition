@@ -7,10 +7,41 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="choice_page">
-
+    <Page.Resources>
+        <Style x:Name="ty1" x:Key="ButtonStyle1" TargetType="Button">
+            <Setter Property="Background" Value="#fF80C0E2" ></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="Content" Value="Login" ></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Template">
+                <Setter.Value >
+                    <ControlTemplate TargetType="Button" >
+                        <Border Background="{TemplateBinding Background}"   BorderThickness="2" BorderBrush="Black"  CornerRadius="3">
+                            <ContentPresenter  HorizontalAlignment="Center"  VerticalAlignment="Center" Content="촬영/데이터전송"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Name="ty2" x:Key="ButtonStyle2" TargetType="Button">
+            <Setter Property="Background" Value="#fF80C0E2" ></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="Content" Value="Login" ></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Template">
+                <Setter.Value >
+                    <ControlTemplate TargetType="Button" >
+                        <Border Background="{TemplateBinding Background}"   BorderThickness="2" BorderBrush="Black"  CornerRadius="3">
+                            <ContentPresenter  HorizontalAlignment="Center"  VerticalAlignment="Center" Content="조회"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid Background="White">
-        <Button x:Name="filming" Content="촬영" Margin="57,138,449,149" Click="filming_Click"/>
-        <Button x:Name="check" Content="조회" Margin="428,138,78,149" Click="check_Click"/>
+        <Button x:Name="filming" Style="{StaticResource ButtonStyle1}" Content="촬영" Margin="57,138,449,149" Click="filming_Click"/>
+        <Button x:Name="check" Style="{StaticResource ButtonStyle2}" Content="조회" Margin="428,138,78,149" Click="check_Click"/>
 
     </Grid>
 </Page>

@@ -69,7 +69,7 @@ namespace cvtest
             InitializeComponent();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e) // 저장 버튼
+        private void Button_Click_1(object sender, RoutedEventArgs e) // 저장 버튼 데이터 읽기 데이터 전송 
         {
             //await Dispatcher.BeginInvoke(new Action(() =>
             //{
@@ -80,7 +80,7 @@ namespace cvtest
                 //string imagePath = @"C:\Users\LMS\source\repos\cvtest\image2\IMG_4430.jpg";
 
                 //string imagePath = @"C:\Users\iot\Source\Repos\kimgun140\cvtest\image2\2024-07-04-09시08분13초.png";
-                //string imagePath = @"C:\Users\LMS\source\repos\cvtest\image2\2024-07-04-08시58분34초.png";
+                //string imagePath = @"C:\Users\iot\Source\Repos\kimgun140\cvtest\image2\2024-07-05-07시45분08초.jpg";
 
                 string imagePath = address + save + ".jpg"; // 촬영한 이미지 
                 Mat asd = Cv2.ImRead(imagePath);
@@ -247,12 +247,13 @@ namespace cvtest
                     var approx = Cv2.ApproxPolyDP(contour, Cv2.ArcLength(contour, true) * 0.02, true);
                     if (approx.Length == 4 && Cv2.IsContourConvex(approx))
                     {
-                        //Cv2.Polylines(frame, new[] { approx }, true, Scalar.Red, 2, LineTypes.AntiAlias);
+                        Cv2.Polylines(frame, new[] { approx }, true, Scalar.Red, 2, LineTypes.AntiAlias);
                         OpenCvSharp.Rect roundrec = Cv2.BoundingRect(approx);
 
                         if (roundrec.Width > 400 && roundrec.Width < 700 && roundrec.Height > 300 && roundrec.Height < 500) // 이정도 되는 사이즈 사각형 찾기 
                         {
                             save = DateTime.Now.ToString("yyyy-MM-dd-hh시mm분ss초"); // t시간 이름 대입
+
                             Mat mat123 = new Mat(frame, roundrec); // 
                             Cv2.ImWrite(address + save + ".jpg", mat123);
                             foundrectangle = true;
@@ -295,7 +296,7 @@ namespace cvtest
         {
             //list 
 
-            try// 이거 되나? 해봐야지 
+            try
             {
                 string msg = MAILINFO + datalist[0] + SEP + datalist[1] + SEP + datalist[2] + SEP + datalist[3] + SEP + datalist[4] + SEP + datalist[5] + SEP + datalist[6] + SEP + datalist[7];
                 //asdf4.Text = 0 + datalist[0];

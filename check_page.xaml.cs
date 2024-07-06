@@ -85,7 +85,7 @@ namespace cvtest
 
         }
 
-       async public void recvMsgSync() // 오는 데이터 answer에 다 넣기 
+        async public void recvMsgSync() // 오는 데이터 answer에 다 넣기 
         {
             int BUFFSIZE = 1024;
 
@@ -95,16 +95,18 @@ namespace cvtest
 
             StringBuilder ab = new StringBuilder();
 
-
+            //await Task.Run
             while (true)
             {
                 byte[] data = new byte[BUFFSIZE];
                 data = null;
                 data = new byte[BUFFSIZE];
-                int size = stream.Read(data, 0, data.Length); //받는 데이터의 바이트배열, 인덱스, 길이
-                testbox.Text += size;
-                testbox.Text += data[0] + "\n";
-                testbox.Text += data[1] + "\n";
+                //await Dispatcher.BeginInvoke(new Action(() => { }));
+
+                int size = await stream.ReadAsync(data, 0, data.Length); //받는 데이터의 바이트배열, 인덱스, 길이
+                //testbox.Text += size;
+                //testbox.Text += data[0] + "\n";
+                //testbox.Text += data[1] + "\n";
 
                 if (data[0] == (byte)REC_FIN) // 마지막에 오는 종료 시그널 
                 {
@@ -124,12 +126,12 @@ namespace cvtest
                     case (byte)REC_SEN://이름이 보낸 목록 
                         {
 
-                            testbox.Text += "size";
+                            //testbox.Text += "size";
 
                             data = data.Skip(1).ToArray();// 프로토콜 제거 
                             ab.Append(Encoding.UTF8.GetString(data, 0, size - 1)); // 
                             Answer = ab.ToString(); //
-                            testbox.Text += Answer;//
+                            //testbox.Text += Answer;//
                             //MessageBox.Show(Answer);
                             //receiverinfo = Answer;
                             //Console.WriteLine(Answer);
@@ -144,7 +146,7 @@ namespace cvtest
                             ab.Append(Encoding.UTF8.GetString(data, 0, size - 1));
                             Answer = ab.ToString();
                             //senderinfo = Answer;
-                            testbox.Text += Answer;
+                            //testbox.Text += Answer;
 
                             ab.Clear();
                             //data_view1(Answer);
@@ -197,6 +199,13 @@ namespace cvtest
 
         public void data_view(string Answer1)// 받는사람 버튼
         {
+            //ItemsControl.ItemsSource.
+            //int cnt = send_user_data.SelectedItems.Count;
+
+            //for (int i = cnt - 1; i >= 0; i--) { send_user_data.Items.Remove(send_user_data.SelectedItems[i]); }
+            mail_Datas.Clear();
+
+            //send_user_data.Items.Remove(1); // 기존 데이터 지우기 
             string[] spliteddatas = Answer1.Split('\n');// 데이터 하나씩 잘림
 
             List<string[]> data = new List<string[]>();// data
@@ -224,18 +233,6 @@ namespace cvtest
                 mail_Data.send_address2 = data[i][3];
                 //MessageBox.Show(data[i][3]);
 
-                //mail_Data.recv_name = data[i][4];
-                //MessageBox.Show(data[i][4]);
-
-                //mail_Data.recv_phone = data[i][5];
-                //MessageBox.Show(data[i][5]);
-
-                //mail_Data.recv_address1 = data[i][6];
-                //MessageBox.Show(data[i][6]);
-
-                //mail_Data.recv_address2 = data[i][7];
-                //MessageBox.Show(data[i][7]);
-
                 mail_Datas.Add(mail_Data);
 
                 //gg.Text += data[i];
@@ -243,7 +240,7 @@ namespace cvtest
 
             send_user_data.ItemsSource = mail_Datas;
             send_user_data.Items.Refresh();
-            //Answer = "";
+            Answer = "";
             // datas에 한줄씩 들어감 이거 다시한번 짤라야함 
             //string[] spliteddatas1 = spliteddatas
 
@@ -255,6 +252,8 @@ namespace cvtest
 
             //datauser.ItemsSource = spliteddatas;
         }
+
+
 
 
         //public void data_view1(string Answer1)// 보낸사람  업데이트 
