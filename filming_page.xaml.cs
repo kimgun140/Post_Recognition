@@ -71,8 +71,6 @@ namespace cvtest
 
         private void Button_Click_1(object sender, RoutedEventArgs e) // 저장 버튼 데이터 읽기 데이터 전송 
         {
-            //await Dispatcher.BeginInvoke(new Action(() =>
-            //{
             //엔진 초기화
             using (var engine = new TesseractEngine(@"C:\Program Files\Tesseract-OCR/tessdata", "eng", EngineMode.Default))
 
@@ -120,17 +118,6 @@ namespace cvtest
 
                 //OpenCvSharp.Rect roiRect = Cv2.SelectROI("img", resizedImg, false);
 
-                //roiRect.X = 20;
-                //roiRect.Y = 100;
-                //roiRect.Width = 800 - roiRect.X;
-                //roiRect.Height = 300 - roiRect.Y;
-                //resizedImg.
-                //if (roiRect.Width > 0 && roiRect.Height > 0)
-                //{
-                //    Mat roi = new Mat(resizedImg, roiRect);
-                //    Cv2.ImShow("cropped", roi);
-                //    Cv2.ImWrite("cropped.jpg", roi);
-                //}
                 int imgW = resizedImg.Cols;
                 int imgH = resizedImg.Rows;
                 int roiX = 40;
@@ -173,16 +160,16 @@ namespace cvtest
                     using (var page = engine.Process(img))
                     {
                         string text = page.GetText();// 추출한 텍스트
-                        //asdf.Text = text;
+       
                         string[] lines = text.Split('\n');// lines에 개행문자 기준으로 잘라서 각각 넣음 
                         foreach (var line in lines)
                         {
                             if (line != "")// 보내는 사람 
                             {
-                                //asdf1.Text += line + "\n";
+
                                 list.Add(line);
                             }
-                            //asdf2.Text += line + "\n";
+      
                         }
 
 
@@ -273,17 +260,6 @@ namespace cvtest
             }
             cam.Release();
             Cv2.DestroyAllWindows();
-
-            //Mat mat = new Mat(frame, rect); // q누르면 종료 되면서 마지막 프레임이 저장 
-
-            // 파일이름 현재 시간
-            //Cv2.ImWrite(address + save + ".png", mat);
-            //Cv2.ImWrite(address + save + ".png", frame);
-            //Cv2.ImShow("ttt", mat);
-            //Cv2.WaitKey(0);
-            //frame.Dispose();
-            //cam.Release();
-            //Cv2.DestroyAllWindows();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e) // 전송 버튼 이미지에서  읽은 텍스트데이터 list에 담은데이터 보내기 
@@ -299,14 +275,7 @@ namespace cvtest
             try
             {
                 string msg = MAILINFO + datalist[0] + SEP + datalist[1] + SEP + datalist[2] + SEP + datalist[3] + SEP + datalist[4] + SEP + datalist[5] + SEP + datalist[6] + SEP + datalist[7];
-                //asdf4.Text = 0 + datalist[0];
-                //asdf4.Text += 1 + datalist[1];
-                //asdf4.Text += 2 + datalist[2];
-                //asdf4.Text += 3 + datalist[3];
-                //asdf4.Text += 4 + datalist[4];
-                //asdf4.Text += 5 + datalist[5];
-                //asdf4.Text += 6 + datalist[6];
-                //asdf4.Text += 7 + datalist[7];
+
 
                 byte[] data = Encoding.UTF8.GetBytes(msg);
                 stream.Write(data, 0, data.Length);//전송할 데이터의 바이트 배열, 전송을 시작할 배열의 인덱스, 전송할 데이터의 길이.

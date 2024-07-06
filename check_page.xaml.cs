@@ -52,16 +52,16 @@ namespace cvtest
             //public string recv_address1 { get; set; }
             //public string recv_address2 { get; set; }
         }
-        class mail_recv_data // 받는 사람 정보
-        {
-            public string recv_name { get; set; }
-            public string recv_phone { get; set; }
-            public string recv_address1 { get; set; }
-            public string recv_address2 { get; set; }
+        //class mail_recv_data // 받는 사람 정보
+        //{
+        //    public string recv_name { get; set; }
+        //    public string recv_phone { get; set; }
+        //    public string recv_address1 { get; set; }
+        //    public string recv_address2 { get; set; }
 
-        }
+        //}
         List<mail_data> mail_Datas = new List<mail_data>();
-        List<mail_recv_data> mail_recv_Datas = new List<mail_recv_data>();
+        //List<mail_recv_data> mail_recv_Datas = new List<mail_recv_data>();
 
 
         private void check_Click(object sender, RoutedEventArgs e) //받는 사람 버튼  
@@ -203,7 +203,7 @@ namespace cvtest
             //int cnt = send_user_data.SelectedItems.Count;
 
             //for (int i = cnt - 1; i >= 0; i--) { send_user_data.Items.Remove(send_user_data.SelectedItems[i]); }
-            mail_Datas.Clear();
+            //mail_Datas.Clear();
 
             //send_user_data.Items.Remove(1); // 기존 데이터 지우기 
             string[] spliteddatas = Answer1.Split('\n');// 데이터 하나씩 잘림
